@@ -1,0 +1,15 @@
+class Solution {
+public:
+    bool checkSubarraySum(vector<int>& nums, int k) {
+        int n=nums.size();
+        for(int i=0;i<n;i++){
+           int s=nums[i];
+            for(int j=i+1;j<n;j++){
+                s=s+nums[j];
+                if(s%k == 0) return true;
+            }
+
+        }
+        return false;
+    }
+};
