@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int findMaxLength(vector<int>& nums) {
+        int n=nums.size(); vector<int> pf;
+        for(int i=0;i<n;i++){
+            if(nums[i] == 0) {
+                nums[i] = -1;
+            }
+          
+        }//till here i have covered the array by replacing 0s with -1
+      // now let us calculte cumulative sum of new array 
+      int s=0,ml=0;
+      map<int,int> mpp;
+      mpp[0]=-1;// LHS MEIN sum RHS MEIN index coz map find() always checks LHS only
+      for(int i=0;i<nums.size();i++){
+          s+=nums[i];
+          if(mpp.find(s) != mpp.end()){
+              int diff= i-mpp[s];// iss subarray ki length aagayi
+              ml=max(ml,diff);
+          }
+         else mpp[s]=i;
+      }
+      return ml;
+    }
+};
