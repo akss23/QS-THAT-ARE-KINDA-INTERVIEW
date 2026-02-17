@@ -1,0 +1,30 @@
+class Solution {
+public:
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        int n=nums.size();
+        int ans=0,s=0;
+        // for(int i=0;i<n;i++){
+        //     int cnt=0;
+        //     for(int j=i;j<n;j++){
+        //         if(nums[j] % 2 != 0) cnt++;
+               
+        //         if(cnt == k ) {
+        //             ans++;
+                    
+        //         }
+        //         else if (cnt>k) break;
+        //     }
+        // }
+        // return ans;// brute force
+        map<int,int> freq;
+        freq[0] = 1;
+        int sum = 0;
+        for(int i=0;i<n;i++) {
+            if(nums[i] % 2 == 0) sum += 0;
+            else sum += 1;
+            ans += freq[sum - k];
+            freq[sum]++;
+        }
+        return ans;
+    }
+};
